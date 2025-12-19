@@ -32,5 +32,42 @@
 - constants: Application-level constants
 - utils: Các tiện ích hỗ trợ cho application layer như DateUtil, EnvironmentUtil ....
 
- # 3. Infrastruc
+ # 3. Adapter Layer:
+## Chức năng chính:
+- Kết nối với hệ thống bên ngoài và chứa các thành phần liên quan đến công nghệ cụ thể như:Rest Controller, database, repositories, schedulers...
+- Là layer outermost trong kiến trúc, có thể thay đổi mà không ảnh hưởng đến các layer bên trong
+- Xử lý các tác vụ I/O như giao tiếp HTTP, truy cập DB ...
+## Các thành phần chính
+- in/rest: Rest API Controllers
+- out: Các adapters kết nối với external systems
+  - mysql: Database adapters (Triển khai theo chiều dọc- chứa nhiều folder và logic). Bao gồm:
+    - configs
+    - constants
+    - converter
+    - data
+    - entities (Khai báo các class với từ khóa @Entity)
+    - repositories
+    - services
+  
+  - elasticsearch: (Trong folder này chứa nhiều các folder con). Ví dụ:
+    - constants
+    - converters
+    - entities
+    - helper
+    - queries
+    - services
+    - utils
+  - mongodb
+  - iam
+- config: Các configuration classes cho adapters (Ví dụ các folder dưới đây):
+  - aop:
+    - annotation
+    - aspect
+  - authorize:
+  - cache
+  - health_check
+  - keycloak   
+- events: Event listeners và object
+- utils: Utility functions cho adapters
+ 
    
